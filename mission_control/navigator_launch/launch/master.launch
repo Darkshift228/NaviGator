@@ -1,0 +1,18 @@
+<launch>
+    <arg name="simulation" default="False" />
+
+    <!-- Load model into rviz -->
+    <include file="$(find navigator_launch)/launch/upload_urdf.launch" />
+
+    <!-- All nodes that run on NaviGator -->
+    <include file="$(find navigator_launch)/launch/gnc.launch"/>
+    <include file="$(find navigator_launch)/launch/alarms.launch"/>
+    <include file="$(find navigator_launch)/launch/diagnostics.launch" />
+    <include file="$(find navigator_launch)/launch/online_bagger.launch" />
+    <include file="$(find navigator_missions)/launch/task_runner.launch" />
+    <include file="$(find navigator_launch)/launch/hardware.launch">
+       <arg name="simulation" value="$(arg simulation)" />
+    </include>
+    <!-- Currently Disabled while new perception programs are developed for RobotX 2018 -->
+    <!-- include file="$(find navigator_launch)/launch/perception.launch" /-->
+</launch>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+    Launches the gazebo simulator and all the same master.launch used on the real platform.
+-->
+<launch>
+    <param name="/is_simulation" type="bool" value="True" />
+    <arg name="gui" default="true"/>
+
+    <!-- Run core navigator code, minus hardware -->
+    <include file="$(find navigator_launch)/launch/master.launch">
+      <arg name="simulation" value="true" />
+    </include>
+
+    <!-- Sets up the world and loads models -->
+    <include file="$(find navigator_gazebo)/launch/goose.launch">
+        <arg name="gui" value="$(arg gui)"/>
+    </include>
+</launch>
